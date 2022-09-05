@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Header, Sidebar, Box } from '../../../common'
-import accept from '../../../assets/images/accept.png';
+import user from '../../../assets/images/user.png';
 import './ViewProfile.scss';
 import { getCookie } from '../../../Utils/common';
 import { useNavigate } from 'react-router-dom';
@@ -22,8 +22,9 @@ const ViewProfile = () => {
   const downloadBtn = () => {
     window.print();
   }
+  
   if (userDetails.profileDetails) {
-    var { name, age, dob, contact, email, gender, tAddress, pAddress, maritalStatus, profileImage, secondary, seniorSecondary, graduation, role, experience, doj, skills, anualIncome, kyc } = userDetails.profileDetails;
+    var { name, dob, contact, email, gender, tAddress, pAddress, maritalStatus, profileImage, secondary, seniorSecondary, graduation, role, experience, doj, skills, anualIncome, kyc } = userDetails.profileDetails;
   }
 
   return (
@@ -39,7 +40,7 @@ const ViewProfile = () => {
                 <div className="d-flex align-items-center">
                   <img
                     className="profile-picture"
-                    src={accept}
+                    src={user}
                     alt="profile picture"
                   />
                   <h4 className="m-0 ms-3">{name}</h4>
@@ -47,8 +48,6 @@ const ViewProfile = () => {
                 <div className='mt-5'>
                   <h4 className='ms-3 text-start fw-bold my-4'>Personal Details</h4>
                   <div className='row ms-3'>
-                    <strong className='col-md-3 text-start mt-2'>Age :</strong>
-                    <div className='col-md-9 text-start mt-2'>{age}</div>
                     <strong className='col-md-3 text-start mt-2'>Date of birth :</strong>
                     <div className='col-md-9 text-start mt-2'>{dob.split('T')[0].split("-").reverse().join("-")}</div>
                     <strong className='col-md-3 text-start mt-2'>Contact :</strong>
@@ -69,11 +68,11 @@ const ViewProfile = () => {
                   <h4 className='ms-3 text-start fw-bold my-4'>Education Details</h4>
                   <div className='row ms-3'>
                     <strong className='col-md-3 text-start mt-2'>10th ( % ) :</strong>
-                    <div className='col-md-9 text-start mt-2'>{secondary}</div>
+                    <div className='col-md-9 text-start mt-2'>{secondary} %</div>
                     <strong className='col-md-3 text-start mt-2'>12th ( % ) :</strong>
-                    <div className='col-md-9 text-start mt-2'>{seniorSecondary}</div>
+                    <div className='col-md-9 text-start mt-2'>{seniorSecondary} %</div>
                     <strong className='col-md-3 text-start mt-2'>University :</strong>
-                    <div className='col-md-9 text-start mt-2'>{graduation}</div>
+                    <div className='col-md-9 text-start mt-2'>{graduation} %</div>
                   </div>
                 </div>
                 <div className='mt-5'>
@@ -82,13 +81,13 @@ const ViewProfile = () => {
                     <strong className='col-md-3 text-start mt-2'>Role :</strong>
                     <div className='col-md-9 text-start mt-2'>{role}</div>
                     <strong className='col-md-3 text-start mt-2'>Experience :</strong>
-                    <div className='col-md-9 text-start mt-2'>{experience}</div>
+                    <div className='col-md-9 text-start mt-2'>{experience} years</div>
                     <strong className='col-md-3 text-start mt-2'>DOJ :</strong>
                     <div className='col-md-9 text-start mt-2'>{doj.split('T')[0].split("-").reverse().join("-")}</div>
                     <strong className='col-md-3 text-start mt-2'>Skills :</strong>
                     <div className='col-md-9 text-start mt-2'>{skills}</div>
                     <strong className='col-md-3 text-start mt-2'>Anual Income :</strong>
-                    <div className='col-md-9 text-start mt-2'>{anualIncome}</div>
+                    <div className='col-md-9 text-start mt-2'>{anualIncome} LPA</div>
                   </div>
                 </div>
                 <div className='mt-5'>

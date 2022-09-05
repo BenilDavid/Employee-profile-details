@@ -10,14 +10,14 @@ const EmployeeProfile = () => {
     let navigate = useNavigate();
     const [validator, showValidationMessage] = useValidator();
     const [showPopup, setShowPopup] = useState(false);
+    const [showAdminPopup, setShowAdminPopup] = useState(false);
 
     const [userName, setuserName] = useState(getCookie("username"));
     const [employeeDetails, setEmployeeDetails] = useState({
         name: '',
-        age: '',
         dob: '',
         contact: '',
-        email: '',
+        email: userName,
         gender: '',
         tAddress: '',
         pAddress: '',
@@ -42,6 +42,19 @@ const EmployeeProfile = () => {
 
 
     useEffect(() => {
+        console.log(localUserDetails);
+        if(localUserDetails.status === "Approved"){
+            setShowAdminPopup(true);
+            setTimeout(() => {
+                setShowAdminPopup(false);
+            }, 3000);
+        }else if(localUserDetails.status === "Declined"){
+            setShowAdminPopup(true);
+            setTimeout(() => {
+                setShowAdminPopup(false);
+            }, 3000);
+        }
+       
         if (!userName) {
             navigate('/login');
         }
@@ -53,8 +66,6 @@ const EmployeeProfile = () => {
     useEffect(() => {
         localStorage.removeItem(userName);
         localStorage.setItem(userName, JSON.stringify(localUserDetails));
-
-      
     }, [localUserDetails])
 
 
@@ -63,7 +74,6 @@ const EmployeeProfile = () => {
             return {
                 ...prev,
                 name: localUserDetails.profileDetails.name,
-                age: localUserDetails.profileDetails.age,
                 dob: moment(localUserDetails.profileDetails.dob),
                 contact: localUserDetails.profileDetails.contact,
                 email: localUserDetails.profileDetails.email,
@@ -152,6 +162,13 @@ const EmployeeProfile = () => {
                 size="sm"
                 message2={"Profile details submitted Successfully"}
             />
+            <Popup
+                isOpen={showAdminPopup}
+                message={localUserDetails.status === "Approved" ? "SUCCESS" : "FAILURE"}
+                image={localUserDetails.status === "Approved" ? "tick" : "close"}
+                size="sm"
+                message2={localUserDetails.status === "Approved" ? "Your Profile details are approved by Admin" : "Your Profile details are declined by Admin"}
+            />
             <Header />
             <Sidebar />
             <div className=' ml-200'>
@@ -177,22 +194,7 @@ const EmployeeProfile = () => {
                                         )}
                                     </span>
                                 </div>
-                                <div className='col-md-5 my-3'>
-                                    <Input
-                                        label="Age"
-                                        placeholder="Age"
-                                        name="age"
-                                        value={employeeDetails.age}
-                                        onChange={handleChange}
-                                    />
-                                    <span className='text-error'>
-                                        {validator.message(
-                                            "age",
-                                            employeeDetails.age,
-                                            "required|numeric|max:60,num"
-                                        )}
-                                    </span>
-                                </div>
+                               
                                 <div className='col-md-5 my-3'>
                                     <label className='label'>
                                         Date of birth <span className="text-error">*</span>
@@ -264,6 +266,23 @@ const EmployeeProfile = () => {
                                     </span>
                                 </div>
                                 <div className='col-md-5 my-3'>
+                                    <CustomSelect
+                                        label='Marital Status'
+                                        placeholder="Select"
+                                        name="maritalStatus"
+                                        value={employeeDetails.maritalStatus}
+                                        onChange={handleFormChange}
+                                        optionsList={maritalStatusOptions}
+                                    />
+                                    <span className='text-error'>
+                                        {validator.message(
+                                            "marital Status",
+                                            employeeDetails.maritalStatus,
+                                            "required"
+                                        )}
+                                    </span>
+                                </div>
+                                <div className='col-md-5 my-3'>
                                     <label className='label'>
                                         Temporary Address <span className="text-error">*</span>
                                     </label>
@@ -311,23 +330,6 @@ const EmployeeProfile = () => {
                                         maxFile={1}
                                         onChange={(e) => handleMediaFiles(e, "profileImage")}
                                     />
-                                </div>
-                                <div className='col-md-5 my-3'>
-                                    <CustomSelect
-                                        label='Marital Status'
-                                        placeholder="Select"
-                                        name="maritalStatus"
-                                        value={employeeDetails.maritalStatus}
-                                        onChange={handleFormChange}
-                                        optionsList={maritalStatusOptions}
-                                    />
-                                    <span className='text-error'>
-                                        {validator.message(
-                                            "marital Status",
-                                            employeeDetails.maritalStatus,
-                                            "required"
-                                        )}
-                                    </span>
                                 </div>
                             </div>
 

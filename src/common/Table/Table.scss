@@ -1,0 +1,18 @@
+.table-container{
+    width: 100%;
+    .striped-table{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 3px;
+    // border: 1px solid #bbbbbb;
+    // border-radius: 10px;
+    .table-heading{
+
+    }
+}
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-accent-bg: #ececec;
+    color: #222;
+}

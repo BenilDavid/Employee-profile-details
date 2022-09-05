@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+}
+
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item, .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+    text-align: left;
+}
+
+.custom_select_container {
+  .ant-select {
+    background: #f9f9f9 !important;
+    min-height: 50px;
+    font-size: 0.875rem;
+    width: 100%;
+  }
+  .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    height: 50px;
+    background: #f9f9f9 !important;
+    .ant-select-selection-search-input {
+      height: 50px;
+      :hover {
+        outline: none;
+      }
+    }
+  }
+  .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    border: 0.25px solid #c0c0c0;
+  }
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+    .ant-select-selector {
+    box-shadow: none;
+  }
+
+  .ant-select-arrow {
+    color: #222;
+  }
+
+  .combined-contact-select .ant-select-selector {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+    .ant-select-selector {
+    border-color: #c0c0c0;
+    box-shadow: none;
+    outline: none;
+  }
+  .ant-select-selector {
+    min-height: 50px;
+    border: 0.25px solid #c0c0c0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 4px;
+    border: 0.25px solid #c0c0c0;
+  }
+  label {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #13c6b8;
+    display: block;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .custom_select_container {
+    margin-bottom: 20px;
+  }
+}

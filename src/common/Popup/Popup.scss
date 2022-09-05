@@ -1,0 +1,74 @@
+// @import "../abstracts/abstracts-dir.scss";
+.common-dialog {
+  max-width: 400px !important;
+
+  .icon-btn {
+    padding: 5px;
+  }
+
+  .dialog-footer {
+    display: flex;
+    text-align: right;
+  }
+  .dialog__btn:hover,
+  .dialog__btn:active,
+  .dialog__btn:focus {
+    background: #e06d0f;
+    border-color: #3ef53e;
+    outline: none;
+    color: #fff;
+    box-shadow: none;
+  }
+  .modal-footer,
+  .modal-header {
+    padding: 0rem;
+    border: none;
+    justify-content: center;
+  }
+  .modal-body {
+    text-align: center;
+    padding: 0rem 0em;
+    img{
+      width: 60px;
+      height: 60px;
+    }
+    .dialog__txt{
+      .failure-msg{
+          font-weight: 500;
+        font-size: 20px;
+        color: #d44343;
+      }
+      .success-msg{
+        font-weight: 500;
+        font-size: 20px;
+        color: #13C6B8;
+      }
+      .success-description{
+        color: #737373;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+      }
+    }
+  }
+  .dialog__title {
+    margin: 0px;
+  }
+  .modal-content {
+    border: none;
+    border-radius: 5px;
+  }
+  .btn-none {
+    display: none;
+  }
+
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 350px;
+    }
+  }
+}
+
+.btn.dark-btn {
+  background: #222;
+}

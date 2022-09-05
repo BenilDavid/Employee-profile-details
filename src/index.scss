@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif !important;
+  background-color: #f7f7f7 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.custom-input{
+  padding: 10px 15px;
+}
+.label {
+  display: block;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  margin-bottom: 6px;
+}
+
+.submit-btn{
+  width: 100%;
+  color: #fff;
+  background-color: #2277da;
+  outline: none;
+  border: 1px solid #0e0f50;
+  padding: 10px 15px;
+  border-radius: 5px;
+  &:hover{
+  background-color: #4489d8;
+  }
+}
+.profile-submit-btn{
+  margin: 25px 0;
+  color: #fff;
+  background-color: #2277da;
+  outline: none;
+  border: 1px solid #0e0f50;
+  padding: 10px 30px;
+  border-radius: 5px;
+  &:hover{
+  background-color: #4489d8;
+  }
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.text-error{
+  color: red !important;
+}
+.green-font{
+  color: #039403 !important;
+}
+.ml-200{
+  margin-left: 200px;
+     @media (max-width: 768px) {
+  margin-left: 100px;
+}
+}

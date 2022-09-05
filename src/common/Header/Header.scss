@@ -1,0 +1,17 @@
+.navbar{
+    background-color: #d2d5df !important;
+    position: sticky;
+    top: 0;
+    z-index: 998;
+    font-weight: 600;
+    .navbar-brand{
+        .blue-font{
+            color: #214ad1;
+            font-size: 20px;
+        }
+    }
+    .logout-img{
+        width: 20px;
+        height: 20px;
+    }
+}

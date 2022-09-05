@@ -330,6 +330,13 @@ const EmployeeProfile = () => {
                                         maxFile={1}
                                         onChange={(e) => handleMediaFiles(e, "profileImage")}
                                     />
+                                    <span className='text-error'>
+                                        {validator.message(
+                                            "Profile image",
+                                            employeeDetails.profileImage,
+                                            "required"
+                                        )}
+                                    </span>
                                 </div>
                             </div>
 
@@ -489,6 +496,13 @@ const EmployeeProfile = () => {
                                         maxFile={1}
                                         onChange={(e) => handleMediaFiles(e, "kyc")}
                                     />
+                                    <span className='text-error'>
+                                        {validator.message(
+                                            "Profile image",
+                                            employeeDetails.kyc,
+                                            "required"
+                                        )}
+                                    </span>
                                 </div>
                             </div>
 

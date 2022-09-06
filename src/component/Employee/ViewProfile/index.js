@@ -27,7 +27,7 @@ const ViewProfile = () => {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userDetails.profileDetails));
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href", dataStr);
-    dlAnchorElem.setAttribute("download", "scene.json");
+    dlAnchorElem.setAttribute("download", "Profile-details.json");
     // dlAnchorElem.click();
   }
   
@@ -112,7 +112,7 @@ const ViewProfile = () => {
             <button className='profile-submit-btn' onClick={downloadBtn}>
               Download as PDF
             </button>
-            <a className='ms-4 text-error' id="downloadAnchorElem" onClick={ExportJson} >export as JSON</a>
+            <a className='ms-4 profile-submit-btn' id="downloadAnchorElem" onClick={ExportJson} >export as JSON</a>
           </div>) : ''}
 
         </div>

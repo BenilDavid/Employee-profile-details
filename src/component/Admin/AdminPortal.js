@@ -81,7 +81,7 @@ const [currentEmail, setcurrentEmail] = useState("")
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userList));
         var dlAnchorElem = document.getElementById('downloadAnchorElem');
         dlAnchorElem.setAttribute("href", dataStr);
-        dlAnchorElem.setAttribute("download", "scene.json");
+        dlAnchorElem.setAttribute("download", "Profile-details.json");
         // dlAnchorElem.click();
     }
 
@@ -109,7 +109,7 @@ const [currentEmail, setcurrentEmail] = useState("")
                 </div>
             </div>
             <div className='d-flex mt-3 justify-content-center align-items-center'>
-                <a className='ms-4 text-error' id="downloadAnchorElem" onClick={ExportJson} >export as JSON</a>
+                <a className='ms-4 profile-submit-btn' id="downloadAnchorElem" onClick={ExportJson} >export as JSON</a>
             </div>
         </>
     )

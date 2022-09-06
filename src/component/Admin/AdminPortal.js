@@ -77,6 +77,14 @@ const [currentEmail, setcurrentEmail] = useState("")
         );
     }
 
+    const ExportJson = () => {
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userList));
+        var dlAnchorElem = document.getElementById('downloadAnchorElem');
+        dlAnchorElem.setAttribute("href", dataStr);
+        dlAnchorElem.setAttribute("download", "scene.json");
+        // dlAnchorElem.click();
+    }
+
     return (
         <>
             <Header />
@@ -99,6 +107,9 @@ const [currentEmail, setcurrentEmail] = useState("")
                         })}
                     </StripedTable>
                 </div>
+            </div>
+            <div className='d-flex mt-3 justify-content-center align-items-center'>
+                <a className='ms-4 text-error' id="downloadAnchorElem" onClick={ExportJson} >export as JSON</a>
             </div>
         </>
     )

@@ -22,6 +22,14 @@ const ViewProfile = () => {
   const downloadBtn = () => {
     window.print();
   }
+
+  const ExportJson = () => {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(userDetails.profileDetails));
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", "scene.json");
+    // dlAnchorElem.click();
+  }
   
   if (userDetails.profileDetails) {
     var { name, dob, contact, email, gender, tAddress, pAddress, maritalStatus, profileImage, secondary, seniorSecondary, graduation, role, experience, doj, skills, anualIncome, kyc } = userDetails.profileDetails;
@@ -100,10 +108,11 @@ const ViewProfile = () => {
               </div>) : (<div>Profile Details not submitted</div>)}
             </Box>
           </div>
-          {userDetails.profileDetails ? (<div className='d-flex mt-3 justify-content-center'>
+          {userDetails.profileDetails ? (<div className='d-flex mt-3 justify-content-center align-items-center'>
             <button className='profile-submit-btn' onClick={downloadBtn}>
               Download as PDF
             </button>
+            <a className='ms-4 text-error' id="downloadAnchorElem" onClick={ExportJson} >export as JSON</a>
           </div>) : ''}
 
         </div>

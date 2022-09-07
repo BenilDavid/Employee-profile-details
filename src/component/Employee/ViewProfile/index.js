@@ -8,15 +8,14 @@ import { useNavigate } from 'react-router-dom';
 const ViewProfile = () => {
 
   const navigate = useNavigate();
-  const [userName, setUserName] = useState(getCookie("username"));
 
+  const [userName, setUserName] = useState(getCookie("username"));
   const userDetails = JSON.parse(localStorage.getItem(userName));
 
   useEffect(() => {
     if (!(userName)) {
       navigate('/login');
     }
-    console.log(userDetails);
   }, [])
 
   const downloadBtn = () => {

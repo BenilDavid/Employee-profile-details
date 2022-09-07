@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Sidebar, StripedTable } from '../../common';
-import tick from '../../assets/images/accept.png';
-import close from '../../assets/images/close.png';
+import { Header, Sidebar, StripedTable } from '../../../common';
+import tick from '../../../assets/images/accept.png';
+import close from '../../../assets/images/close.png';
 import './AdminPortal.scss';
+import { useNavigate } from "react-router-dom";
 
 const AdminPortal = () => {
+
+    let navigate = useNavigate();
 
     const [userList, setUserList] = useState([]);
 const [currentEmail, setcurrentEmail] = useState("")
@@ -14,6 +17,7 @@ const [currentEmail, setcurrentEmail] = useState("")
         { label: 'Name' },
         { label: 'Email' },
         { label: 'Experience' },
+        { label: 'View' },
         { label: 'Approve' },
         { label: 'Decline' },
         { label: 'Status' },
@@ -82,9 +86,12 @@ const [currentEmail, setcurrentEmail] = useState("")
         var dlAnchorElem = document.getElementById('downloadAnchorElem');
         dlAnchorElem.setAttribute("href", dataStr);
         dlAnchorElem.setAttribute("download", "Profile-details.json");
-        // dlAnchorElem.click();
     }
 
+    const handleView = (email) => {
+console.log('email', email);
+        navigate("/admin-view", { state: email});
+    }
     return (
         <>
             <Header />
@@ -93,18 +100,18 @@ const [currentEmail, setcurrentEmail] = useState("")
                 <div className='table-container mx-3 text-center my-3'>
                     <h2 className='text-uppercase'>Admin Portal</h2>
                     <StripedTable headerDetails={headerContent} >
-                        {userList.map(({ profileDetails: { name, email, anualIncome }, status }, index) => {
+                        {userList.profileDetails !== null ? userList.map(({ profileDetails: { name, email, anualIncome }, status }, index) => {
                             return (<tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{name}</td>
                                 <td>{email}</td>
                                 <td>{anualIncome}</td>
+                                <td><button className='btn btn-primary' onClick={() => handleView(email)}>View</button></td>
                                 <td><img className='action-img' onClick={() => handleApprove(email)} src={tick} /></td>
                                 <td><img className='action-img' onClick={() => handleDecline(email)} src={close} /></td>
-                                {console.log("status", status)}
                                 <td className={status === "Approved" ? "green-font" : "text-error"}>{status || "-"}</td>
                             </tr>)
-                        })}
+                        }) : (<tr className='no-profile fw-bold'><td colSpan={'12'}><span>No Profile submitted</span></td></tr>)}
                     </StripedTable>
                 </div>
             </div>

@@ -40,7 +40,6 @@ const EmployeeProfile = () => {
     const genderOptions = [{ id: 1, label: 'Male' }, { id: 2, label: 'Female' }];
     const maritalStatusOptions = [{ id: 1, label: 'Married' }, { id: 2, label: 'Un-married' }];
 
-
     useEffect(() => {
         console.log(localUserDetails);
         if(localUserDetails.status === "Approved"){
@@ -228,7 +227,7 @@ const EmployeeProfile = () => {
                                         {validator.message(
                                             "contact",
                                             employeeDetails.contact,
-                                            "required|numeric|min:8|max:12"
+                                            "required|phone"
                                         )}
                                     </span>
                                 </div>

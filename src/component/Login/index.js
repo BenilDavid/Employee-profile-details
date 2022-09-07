@@ -110,7 +110,7 @@ function Login() {
                 <div>Not Registered ? <span className='cursor-pointer text-error' onClick={handleClick}>create an account</span></div>
                 <div className='d-flex mt-3 justify-content-center'>
                     <button className='submit-btn' onClick={loginSubmit}>
-                        submit
+                        Login
                     </button>
                 </div>
             </div>

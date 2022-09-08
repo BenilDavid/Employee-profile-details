@@ -18,6 +18,7 @@ function Register() {
         password: "",
         confirmPassword: "",
         status: "",
+        remarks: "",
         profileDetails: null,
     });
 

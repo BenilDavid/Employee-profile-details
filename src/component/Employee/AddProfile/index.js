@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../../Utils/common';
 
 const EmployeeProfile = () => {
-    
+
     let navigate = useNavigate();
     const [validator, showValidationMessage] = useValidator();
     const [showPopup, setShowPopup] = useState(false);
@@ -21,6 +21,7 @@ const EmployeeProfile = () => {
         gender: '',
         tAddress: '',
         pAddress: '',
+        sameAsCheckBox: false,
         maritalStatus: '',
         profileImage: '',
 
@@ -42,18 +43,18 @@ const EmployeeProfile = () => {
 
     useEffect(() => {
         console.log(localUserDetails);
-        if(localUserDetails.status === "Approved"){
+        if (localUserDetails.status === "Approved") {
             setShowAdminPopup(true);
             setTimeout(() => {
                 setShowAdminPopup(false);
             }, 3000);
-        }else if(localUserDetails.status === "Declined"){
+        } else if (localUserDetails.status === "Declined") {
             setShowAdminPopup(true);
             setTimeout(() => {
                 setShowAdminPopup(false);
             }, 3000);
         }
-       
+
         if (!userName) {
             navigate('/login');
         }
@@ -79,6 +80,8 @@ const EmployeeProfile = () => {
                 gender: localUserDetails.profileDetails.gender,
                 tAddress: localUserDetails.profileDetails.tAddress,
                 pAddress: localUserDetails.profileDetails.pAddress,
+                sameAsCheckBox: localUserDetails.profileDetails.sameAsCheckBox,
+
                 maritalStatus: localUserDetails.profileDetails.maritalStatus,
                 profileImage: localUserDetails.profileDetails.profileImage,
 
@@ -152,6 +155,14 @@ const EmployeeProfile = () => {
         }
     }
 
+    const handleSameAsCheckbox = (value) => {
+        if (value.target.checked) {
+            setEmployeeDetails((prev) => ({ ...prev, pAddress: employeeDetails.tAddress, sameAsCheckBox: true }));
+        } else {
+            setEmployeeDetails((prev) => ({ ...prev, pAddress: "", sameAsCheckBox: false }));
+        }
+    }
+
     return (
         <>
             <Popup
@@ -174,6 +185,12 @@ const EmployeeProfile = () => {
                 <div className='text-center my-3'>
                     <h2 className='text-uppercase'>Employee Profile Details</h2>
                     <div className='container'>
+                        <div>
+                            <span className={localUserDetails.status === "Approved" ? "green-font" : "text-error"}>
+                                {localUserDetails.profileDetails && (localUserDetails.status === "Approved" ? "** Your Profile details are approved by Admin **" : localUserDetails.status === "Declined" ? "** Your Profile details are declined by Admin please Re-submit your form with valid information **" : "** Your details are pending for Admin Approval ** ")}
+                            </span>
+                            <div className='text-error'> {localUserDetails.remarks ? <>{localUserDetails.remarks}</> : ""}</div>
+                        </div>
                         <Box className='mt-4' title="Personal Details">
                             <div className='row'>
                                 <div className='col-md-5 my-3'>
@@ -193,7 +210,7 @@ const EmployeeProfile = () => {
                                         )}
                                     </span>
                                 </div>
-                               
+
                                 <div className='col-md-5 my-3'>
                                     <label className='label'>
                                         Date of birth <span className="text-error">*</span>
@@ -309,6 +326,7 @@ const EmployeeProfile = () => {
                                         value={employeeDetails.pAddress}
                                         onChange={handleChange}
                                     />
+                                    <label className='d-flex align-items-center justify-content-start'><input className='me-1' type="checkbox" onClick={handleSameAsCheckbox} checked={employeeDetails.sameAsCheckBox} /><span className='small fw-bold '>Same as Temporary address</span></label>
                                     <span className='text-error'>
                                         {validator.message(
                                             "Permanent address",

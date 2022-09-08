@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Sidebar, StripedTable } from '../../../common';
+import { Header, Input, Sidebar, StripedTable } from '../../../common';
 import tick from '../../../assets/images/accept.png';
 import close from '../../../assets/images/close.png';
 import './AdminPortal.scss';
@@ -10,16 +10,16 @@ const AdminPortal = () => {
     let navigate = useNavigate();
 
     const [userList, setUserList] = useState([]);
-const [currentEmail, setcurrentEmail] = useState("")
+    const [currentEmail, setcurrentEmail] = useState("")
 
     const headerContent = [
         { label: 'S.No' },
         { label: 'Name' },
         { label: 'Email' },
-        { label: 'Experience' },
         { label: 'View' },
         { label: 'Approve' },
         { label: 'Decline' },
+        { label: 'Remarks' },
         { label: 'Status' },
     ]
 
@@ -89,9 +89,27 @@ const [currentEmail, setcurrentEmail] = useState("")
     }
 
     const handleView = (email) => {
-console.log('email', email);
-        navigate("/admin-view", { state: email});
+        console.log('email', email);
+        navigate("/admin-view", { state: email });
     }
+    const handleChange = ({ target: { value } }, email) => {
+        setcurrentEmail(email);
+        setUserList((current) =>
+            current.map((obj) => {
+                if (obj.userName === email) {
+                    console.log(obj);
+                    return {
+                        ...obj,
+                        remarks: value,
+                    };
+                }
+                return {
+                    ...obj,
+                };
+            })
+        );
+    }
+
     return (
         <>
             <Header />
@@ -100,15 +118,23 @@ console.log('email', email);
                 <div className='table-container mx-3 text-center my-3'>
                     <h2 className='text-uppercase'>Admin Portal</h2>
                     <StripedTable headerDetails={headerContent} >
-                        {userList.profileDetails !== null ? userList.map(({ profileDetails: { name, email, anualIncome }, status }, index) => {
+                        {userList.profileDetails !== null ? userList.map(({ remarks, profileDetails: { name, email }, status }, index) => {
                             return (<tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{name}</td>
                                 <td>{email}</td>
-                                <td>{anualIncome}</td>
                                 <td><button className='btn btn-primary' onClick={() => handleView(email)}>View</button></td>
                                 <td><img className='action-img' onClick={() => handleApprove(email)} src={tick} /></td>
                                 <td><img className='action-img' onClick={() => handleDecline(email)} src={close} /></td>
+                                <td>
+                                    {status === "Approved" ? ('-') : (<> <Input
+                                        placeholder="Enter here"
+                                        name={`${name}Remarks`}
+                                        value={remarks}
+                                        onChange={(e) => handleChange(e, email)}
+                                    /></>)}
+
+                                </td>
                                 <td className={status === "Approved" ? "green-font" : "text-error"}>{status || "-"}</td>
                             </tr>)
                         }) : (<tr className='no-profile fw-bold'><td colSpan={'12'}><span>No Profile submitted</span></td></tr>)}

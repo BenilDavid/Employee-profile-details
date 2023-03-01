@@ -6,7 +6,7 @@ import AddProfile from './component/Employee/AddProfile/index';
 import ViewProfile from './component/Employee/ViewProfile';
 import AdminPortal from './component/Admin/AdminPortal/index';
 import AdminView from './component/Admin/AdminView/index';
-import { Header, Sidebar } from './common';
+// import { Header, Sidebar } from './common';
 
 function App() {
 

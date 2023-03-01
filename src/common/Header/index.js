@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import './Header.scss';
 import logout from '../../assets/images/logout.png'
@@ -25,7 +26,7 @@ export const Header = () => {
                     </ul>
                     <form className="d-flex">
 
-                        <span className="cursor-pointer" onClick={handleLogout}> <img className="logout-img" src={logout} /> Logout</span>
+                        <span className="cursor-pointer" onClick={handleLogout}> <img className="logout-img" src={logout} alt="" /> Logout</span>
                         {/* <button className="btn btn-outline-success" type="submit">Search</button> */}
                     </form>
                 {/* </div> */}

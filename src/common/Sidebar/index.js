@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./sidebar.scss";
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,8 @@ import user from '../../assets/images/user.png'
 export const Sidebar = ({ link = true }) => {
     let navigate = useNavigate();
 
-    const [userName, setuserName] = useState(getCookie("username"));
-    const userDetails = JSON.parse(localStorage.getItem(userName));
+    // const [userName, setuserName] = useState();
+    const userDetails = JSON.parse(localStorage.getItem(getCookie("username")));
 
     const [sidebarLinks, setSidebarLinks] = useState([
         {
@@ -56,7 +56,7 @@ export const Sidebar = ({ link = true }) => {
                     <>
                         <div className="d-flex p-2 justify-content-between align-items-center my-3">
                             {/* <FontAwesomeIcon icon={faUser} /> */}
-                            <img className="user-image me-2" src={user} />
+                            <img className="user-image me-2" src={user} alt="" />
                             <div><span className="text-muted">Welcome,</span> <span className="text-center">{userDetails.userName.split("@")[0] || ""}</span></div>
                             </div>
                         {sidebarLinks.map(({ id, label, to, icon, active }) => {

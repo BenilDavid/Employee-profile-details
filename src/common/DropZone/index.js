@@ -13,6 +13,7 @@ export const DropZone = ({
     const onDrop = useCallback(acceptedFiles => {
         // Do something with the files
         onChange(acceptedFiles);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({ onDrop, accept });
 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from 'react'
 import { Header, Sidebar, Box } from '../../../common'
 import user from '../../../assets/images/user.png';
 import './AdminView.scss';
@@ -16,13 +17,6 @@ const ViewProfile = () => {
     // const [userName, setUserName] = useState(getCookie("username"));
     const userDetails = JSON.parse(localStorage.getItem(state));
 
-    useEffect(() => {
-        console.log(userDetails);
-        // if (!(userName)) {
-        //     navigate('/login');
-        // }
-    }, [])
-
     const downloadBtn = () => {
         window.print();
     }
@@ -36,7 +30,7 @@ const ViewProfile = () => {
     }
 
     if (userDetails.profileDetails) {
-        var { name, dob, contact, email, gender, tAddress, pAddress, maritalStatus, profileImage, secondary, seniorSecondary, graduation, role, experience, doj, skills, anualIncome, kyc } = userDetails.profileDetails;
+        var { name, dob, contact, email, gender, tAddress, pAddress, maritalStatus, secondary, seniorSecondary, graduation, role, experience, doj, skills, anualIncome, kyc } = userDetails.profileDetails;
     }
 
     return (
@@ -58,7 +52,7 @@ const ViewProfile = () => {
                                     <img
                                         className="profile-picture"
                                         src={user}
-                                        alt="profile picture"
+                                        alt="profile"
                                     />
                                     <h4 className="m-0 ms-3">{name}</h4>
                                 </div>

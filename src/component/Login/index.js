@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Login.scss';
 import { Input, Popup } from '../../common'
 import { useNavigate } from "react-router-dom";

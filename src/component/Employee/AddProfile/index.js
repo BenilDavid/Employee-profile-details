@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { Popup, Header, Sidebar, Box, Input, CustomDatePicker, CustomSelect, TextArea, DropZone } from '../../../common'
 import useValidator from "../../../service/useValidator";
@@ -12,7 +13,7 @@ const EmployeeProfile = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [showAdminPopup, setShowAdminPopup] = useState(false);
 
-    const [userName, setuserName] = useState(getCookie("username"));
+    const userName = getCookie("username");
     const [employeeDetails, setEmployeeDetails] = useState({
         name: '',
         dob: '',

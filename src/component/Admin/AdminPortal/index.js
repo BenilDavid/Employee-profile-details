@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import { Header, Input, Sidebar, StripedTable } from '../../../common';
 import tick from '../../../assets/images/accept.png';
@@ -36,12 +37,14 @@ const AdminPortal = () => {
     }, [])
 
     useEffect(() => {
+        // eslint-disable-next-line array-callback-return
         userList.map((user) => {
             if (user.userName === currentEmail) {
                 localStorage.removeItem(currentEmail);
                 localStorage.setItem(currentEmail, JSON.stringify(user));
             }
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userList])
 
     function handleApprove(email) {
@@ -124,8 +127,8 @@ const AdminPortal = () => {
                                 <td>{name}</td>
                                 <td>{email}</td>
                                 <td><button className='btn btn-primary' onClick={() => handleView(email)}>View</button></td>
-                                <td><img className='action-img' onClick={() => handleApprove(email)} src={tick} /></td>
-                                <td><img className='action-img' onClick={() => handleDecline(email)} src={close} /></td>
+                                <td><img className='action-img' onClick={() => handleApprove(email)} src={tick} alt="" /></td>
+                                <td><img className='action-img' onClick={() => handleDecline(email)} src={close} alt="" /></td>
                                 <td>
                                     {status === "Approved" ? ('-') : (<> <Input
                                         placeholder="Enter here"

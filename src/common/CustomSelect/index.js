@@ -39,6 +39,7 @@ export const CustomSelect = ({
                     onChange={(value) => {
                         let body = {};
                         let infinite = false;
+                        // eslint-disable-next-line array-callback-return
                         let isInfinite = optionsList.filter((options) => {
                             if (options.value === value) {
                                 infinite = true;
